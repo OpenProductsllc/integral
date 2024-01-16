@@ -1,10 +1,22 @@
 package main
 
 import (
+    "fmt"
+    "database/sql"
     "net/http"
     "log"
     "html/template"
+    _ "github.com/lib/pq"
+    "os"
+    
+    "github.com/OpenProductsllc/integral/internal/models"
 )
+
+var dbHost = os.Getenv("DB_HOST")
+var dbPort = os.Getenv("DB_PORT")
+var dbUser = os.Getenv("DB_USER")
+var dbPassword = os.Getenv("DB_PASSWORD")
+var dbName = os.Getenv("DB_NAME")
 
 func main() {
     // Serve static files
@@ -20,9 +32,10 @@ func main() {
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-    content := []string {
-        "IMAGE1",
-        "IMAGE2"}
+    db := connectDB()
+    defer db.Close()
+    imageRepo := &models.ImageRepository{DB: db}
+    images, err := imageRepo.GetAllImages()
     // Parse the template
     tmpl, err := template.ParseFiles("./web/template/base.html", "./web/template/list.html")
     if err != nil {
@@ -31,8 +44,16 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     // Execute the template
-    err = tmpl.Execute(w, content)
+    err = tmpl.Execute(w, images)
     if err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError)
     }
+}
+
+func connectDB() *sql.DB{
+    psqlconn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+        dbHost, dbPort, dbUser, dbPassword, dbName)
+    // open database
+    db, _ := sql.Open("postgres", psqlconn)
+    return db
 }
