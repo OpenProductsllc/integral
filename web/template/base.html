@@ -8,6 +8,16 @@
     <div class="header">
         <h1>Welcome to Integral</h1>
     </div>
+    Upload
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        Files: <input type="file" name="file"><br><br>
+        <input type="submit" value="POST">
+    </form>
+        </br>
+    Delete
+    <form action="/delete" method="post">
+      <input type="submit" value="DELETEALL">
+    </form>
     {{ template "content" . }}
 </body>
 </html>
