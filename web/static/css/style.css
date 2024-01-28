@@ -4,16 +4,75 @@ body {
 }
 
 .header {
+    background-color: #000;
+    color: #fff; /* White text */
+    padding: 10px;
     text-align: center;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #222; /* Darker background */
+    padding: 10px;
+    text-align: left;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #0074d9; /* Bright blue link color */
+    margin: 0; /* Remove top and bottom margin */
+    /*display: block; /* Make the links block-level elements */
+    padding: 10px; /* Add padding to control the link's height */
+}
+
+.nav-link:hover {
+    background-color: #111111;
 }
 
 .image {
-    border: 5px solid;
+    border: 50px solid;
     margin: auto;
     width: 50%;
     margin-top: 20px;
 }
 
 .image img {
-    width: 100%;
+    width: 10%;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid;
+  border-color: red;
+  width: 75%
+}
+
+.flex-container {
+  margin: auto;
+  flex-direction: column;
+  align-items: stretch; /* Stretch children to fit the container */
+  justify-content: center;
+  height: 100vh; /* Adjust if you want a different height for the container */
+  padding: 20px; /* Optional: padding around the container */
+  width: 75%;
+}
+
+.card {
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 5px solid;
+  display: flex; /* Make card a flex container */
+  flex-direction: column; /* Stack children vertically */
+  background-color: black;
+}
+
+.card img {
+  height: auto; /* Height will be set automatically */
+  object-fit: contain; /* Ensures the image fits within its dimensions */
+}
+
+.card content {
+  flex: 1; /* Allow content to expand and fill the space */
 }

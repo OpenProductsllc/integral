@@ -8,16 +8,12 @@
     <div class="header">
         <h1>Welcome to Integral</h1>
     </div>
-    Upload
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        Files: <input type="file" name="file"><br><br>
-        <input type="submit" value="POST">
-    </form>
-        </br>
-    Delete
-    <form action="/delete" method="post">
-      <input type="submit" value="DELETEALL">
-    </form>
+    <nav class="navbar">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/create">New Post</a>
+        <a class="nav-link" href="/update">Edit Post</a>
+        <a class="nav-link" href="/servedelete">Delete Post</a>
+    </nav>
     {{ template "content" . }}
 </body>
 </html>

@@ -1,7 +1,9 @@
 {{ define "content" }}
-    {{range .}}
-    <div class="image">
-            <img src="{{ .ImageURL }}" alt="Italian Trulli">
-    </div>
+    <div class="flex-container">
+        {{range .}}
+            <div class="card">
+                <img src="/static/uploads/{{ . }}" alt="Italian Trulli">
+            </div>
         {{end}}
+    </div>
 {{ end }}
