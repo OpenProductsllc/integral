@@ -18,6 +18,7 @@ jobs:
 
       - name: Run a multi-line script
         run: |
+          mkdir ./web/static/uploads
           docker build -t integral .
           docker stop integral
           docker rm integral
